@@ -194,5 +194,29 @@
   };
 </script>
 
+    <script>
+      document.getElementById('registrationForm').onsubmit = function(e) {
+          e.preventDefault();
+
+          // Grabbing form values dynamically
+          const name = document.querySelector('input[placeholder="e.g. Veer Jora"]').value;
+          const prn = document.querySelector('input[placeholder*="PRN"]').value;
+          const email = document.querySelector('input[type="email"]').value;
+
+          try {
+              // Simulating successful database insertion & local logging
+              console.log("Mock DB Save:", { fullName: name, prnNumber: prn, email: email, status: "Verified" });
+
+              // Showing professional confirmation alert
+              alert(`Account Created Successfully!\nWelcome, ${name}. Your Contractor Profile (PRN: ${prn}) has been verified.`);
+              
+              // Smooth redirect back to your live fleet page
+              window.location.href = "index.html"; 
+          } catch (error) {
+              alert("Error: " + error.message);
+          }
+      };
+    </script>
+
 </body>
 </html>
