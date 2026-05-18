@@ -386,6 +386,39 @@
         </div>
     </section>
 
+<div id="bookingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 450px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <span onclick="closeModal()" style="position: absolute; top: 10px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #7f8c8d;">&times;</span>
+        <h2 style="color: #2c3e50; margin-bottom: 5px;">Equipment Booking</h2>
+        <p style="color: #f39c12; font-weight: bold; margin-bottom: 20px;" id="modalEquipmentName">Machine Name</p>
+        
+        <form id="modalBookingForm">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Delivery Site Address</label>
+                <input type="text" placeholder="e.g. Alandi, Pune" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 15px; display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Start Date</label>
+                    <input type="date" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+                <div style="flex: 1;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Duration</label>
+                    <select style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <option>1 Day (Daily Base)</option>
+                        <option>3 Days</option>
+                        <option>1 Week (Weekly Discount)</option>
+                        <option>1 Month+</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" style="background: #f39c12; color: #2c3e50; width: 100%; padding: 12px; border: none; border-radius: 5px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s;">
+                Confirm Booking Dispatch
+            </button>
+        </form>
+    </div>
+</div>
+    
     <footer>
         <p>&copy; 2026 BuildRent Equipment Services. All Rights Reserved.</p>
     </footer>
@@ -448,6 +481,50 @@
             });
         });
     });
+
+// --- Booking Modal Popup Logic ---
+    const rentButtons = document.querySelectorAll('.btn-rent');
+    const bookingModal = document.getElementById('bookingModal');
+    const modalEquipmentName = document.getElementById('modalEquipmentName');
+
+    // Attach click event to all "Rent Now" buttons
+    rentButtons.forEach(button => {
+        // Prevent it from jumping to the top of page
+        if(button.getAttribute('href') === "#" || button.getAttribute('href') === "") {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Find the specific equipment name from the parent card element
+                const card = this.closest('.card-content');
+                const machineTitle = card.querySelector('.card-title').textContent;
+                
+                // Open the modal and set the title dynamically
+                modalEquipmentName.innerText = machineTitle;
+                bookingModal.style.display = 'flex';
+            });
+        }
+    });
+
+    // Function to close the modal
+    function closeModal() {
+        bookingModal.style.display = 'none';
+    }
+
+    // Close modal if user clicks anywhere outside the white box
+    window.onclick = function(event) {
+        if (event.target == bookingModal) {
+            bookingModal.style.display = "none";
+        }
+    }
+
+    // Handle Form Submission
+    document.getElementById('modalBookingForm').onsubmit = function(e) {
+        e.preventDefault();
+        alert(`Booking Request Transmitted Successfully!\nOur logistics logistics division will coordinate dispatch for your ${modalEquipmentName.innerText} within 4 hours.`);
+        closeModal();
+    };
+
+    
 </script>
     
 </body>
