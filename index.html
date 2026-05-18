@@ -6,6 +6,22 @@
     <title>BuildRent | Heavy Equipment Rental Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Smoothly animate the fleet filtering grid items */
+.card {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+        /* Zoom effect wrapper for machinery media elements */
+.card-img {
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img {
+    transform: scale(1.08);
+}
+
+
+
+        
         :root {
             --primary: #f39c12; /* Construction Yellow */
             --dark: #2c3e50;
@@ -219,6 +235,15 @@
         <a href="#catalog" class="btn-rent" style="padding: 15px 40px; background: var(--primary); color: var(--dark); font-weight: bold;">Explore Inventory</a>
     </header>
 
+
+<div style="background: #1a252f; color: white; padding: 25px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center;">
+    <div><i class="fas fa-shield-alt" style="color: #f39c12; font-size: 1.5rem; margin-right: 8px;"></i> 100% On-Site Equipment Insurance</div>
+    <div><i class="fas fa-tools" style="color: #f39c12; font-size: 1.5rem; margin-right: 8px;"></i> Zero-Down Breakdown Support</div>
+    <div><i class="fas fa-certificate" style="color: #f39c12; font-size: 1.5rem; margin-right: 8px;"></i> ARAI & ISO Certified Operators</div>
+</div>
+
+
+    
     <section class="container" id="catalog">
         <h2 class="section-title">Our Fleet</h2>
         
@@ -337,7 +362,9 @@
         </div>
     </section>
 
-    <div id="bookingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center;">
+<div id="bookingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26, 37, 47, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 450px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <span onclick="closeModal()" style="position: absolute; top: 10px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #7f8c8d;">&times;</span>
         <div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 450px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
             <span onclick="closeModal()" style="position: absolute; top: 10px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #7f8c8d;">&times;</span>
             <h2 style="color: #2c3e50; margin-bottom: 5px;">Equipment Booking</h2>
